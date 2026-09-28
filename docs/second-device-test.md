@@ -52,21 +52,23 @@ from another slot or model.
 ## 4. Acceptance checklist after an independently verified install
 
 Record pass, fail, or not tested for each item. Do not treat an untested item
-as working.
+as working. The [device QA tracker](device-qa.md) records the fuller feature
+list and distinguishes a working service from a user-visible result.
 
 | Check | First-phone baseline | Second-phone result |
 | --- | --- | --- |
-| Cold boot to setup and home, unplugged | Pass | Not tested |
-| Reboot without USB and return to home | Pass | Not tested |
+| Cold boot to setup and home, unplugged | Pass before September 28 repairs; post-repair test pending | Not tested |
+| Reboot without USB and return to home | Pass before September 28 repairs; post-repair test pending | Not tested |
 | Touch edges, keyboard, power lock, volume | Pass | Not tested |
 | Wi-Fi scan, connect, and reconnect after reboot | Pass | Not tested |
 | Terminal opens; select/copy text; Codex starts | Pass | Not tested |
-| OpenStore launches and an app opens | Partial | Not tested |
-| Bluetooth scan and pair | Fail | Not tested |
+| OpenStore launches and an app opens | Partial; Click apps launch through an unconfined workaround | Not tested |
+| Bluetooth scan and pair | Partial; discovery passed, pairing untested | Not tested |
 | Mobile data, voice calls, SMS with SIM | Not tested | Not tested |
-| Speaker, microphone, headset | Not tested | Not tested |
-| Front and rear cameras | Not tested | Not tested |
-| Suspend/wake, battery drain, charging | Not tested | Not tested |
+| Speaker, microphone, headset | Audio devices and silent playback passed; audible/recorded sound untested | Not tested |
+| Front and rear cameras | Preview frames passed; photo/video capture untested | Not tested |
+| Rotation, proximity, ambient light | Accelerometer sample passed; physical behavior untested | Not tested |
+| Suspend/wake, battery drain, charging | Single charging-status sample; endurance untested | Not tested |
 | Stock restore and re-install | Not tested | Not tested |
 
 Note both the factory and Android-reported models, active slot,

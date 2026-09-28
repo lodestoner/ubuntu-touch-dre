@@ -16,19 +16,25 @@ installation path.
 
 | Area | Observed state on the first converted DE2118 |
 | --- | --- |
-| Boot and home screen | Working, including a fully unplugged restart |
+| Boot and home screen | Working, including a fully unplugged restart **before** the September 28 repairs; post-repair cold boot pending |
 | Touch and physical buttons | Working |
-| Native Wi-Fi | Working and reconnecting after reboot |
+| Native Wi-Fi | Working and reconnecting after earlier reboots; post-repair boot check pending |
 | Terminal and Codex CLI | Working; terminal text selection uses press-and-hold → Select |
-| OpenStore | Starts, but its UI is slow and Click app launch is unreliable |
-| Bluetooth | Not working; the failing Bluebinder service is disabled |
-| Cellular, calls, SMS, audio, camera, suspend, charging | Not acceptance-tested |
+| Apps | OpenStore, Chromium, and Camera launch after repair through an **unconfined** Click workaround; Firefox and Settings also open. Broader app behavior is untested. |
+| Bluetooth | Controller powers on and discovery starts/stops after repair; pairing, audio, and cold-boot persistence untested |
+| Audio | DSP, output/input devices, and silent playback work; audible output and recording untested |
+| Camera and sensors | Preview frames and an accelerometer reading observed; saved photos/video and physical sensor behavior untested |
+| Cellular | Modem online without a SIM; calls, SMS, and data untested |
+| Power and USB | Battery reported charging at one check; charge rate/endurance untested. MTP and ADB are unavailable in the current USB gadget. |
 
 The development boot still has **unauthenticated root rescue services on its
-USB network interface**, and AppArmor/Click confinement is not working. Do not
-use it as a trusted primary phone or attach it to an untrusted USB host. See
-[current technical state](docs/halium16-current-state.md) for the exact boot
-chain, workarounds, and remaining risks.
+USB network interface**, and AppArmor is disabled. Click apps currently launch
+through unconfined compatibility wrappers; SELinux is permissive. Do not use
+it as a trusted primary phone or attach it to an untrusted USB host. The
+[device QA tracker](docs/device-qa.md)
+separates completed tests from partial and untested items. See the
+[current technical state](docs/halium16-current-state.md) for the boot chain,
+workarounds, and remaining risks.
 
 ## Start here: check a second phone safely
 
@@ -76,12 +82,13 @@ restore path.
   These are developer sources, not a tested image builder or installer.
 - `scripts/` and `tests/`: device identity, source validation, artifact checks,
   and the read-only preflight.
-- `docs/bootstrap-log.md` and `docs/halium16-current-state.md`: dated evidence
-  and the verified state of the first phone.
+- `docs/bootstrap-log.md`, `docs/halium16-current-state.md`, and
+  `docs/device-qa.md`: dated evidence, the first phone's technical state, and
+  the feature test tracker.
 
 Large Android/Ubuntu root filesystems, vendor blobs, downloaded packages, and
-boot images are **not** distributed here. The running phone also contains
-manual configuration that has not yet been captured as a reproducible build.
+boot images are **not** distributed here. The September 28 hardware and app
+repairs also live on the phone, not in a reproducible build from this repo.
 The stale experimental `wait-and-flash.py` helper is intentionally not part of
 the published source; it must not be used as an installer.
 
@@ -89,7 +96,9 @@ the published source; it must not be used as an installer.
 
 We need a reproducible build and packaging process, a verified stock restore
 path, an installation procedure tested end-to-end on the second phone, and
-working confinement. Bluetooth and the remaining hardware also need testing.
+working confinement and removal of the unauthenticated root USB services from
+user images. Bluetooth pairing and the remaining hardware need hands-on testing;
+the post-repair cold boot and longer endurance tests remain open.
 Only then should we consider a downloadable image, UBports Installer support,
 or a supported-device listing. [UBports' port-finalization guide](https://docs.ubports.com/en/latest/porting/finalize/)
 describes recovery and installer work after functional bring-up.

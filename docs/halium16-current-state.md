@@ -80,27 +80,58 @@ drop-ins must remain installed until the boot image is updated. The
 host uses `192.168.2.20/24`; the USB NCM interface name changes after each
 reboot, so that host address must be assigned to the new interface.
 
+## September 28 repair update (not cold-boot verified)
+
+A device-local repair pass rebuilt kernel-matched Bluetooth, audio, and camera
+modules and installed them under the running kernel's `updates/dre/` module
+directory. It also changed udev permissions, hardware-service ordering,
+device-info/oFono configuration, Click launch compatibility, media-hub context
+handling, and X11 launchers for Settings and Firefox. The work and its backups
+remain on the phone; this repository does not yet reproduce them from a clean
+build. The repair pass did not reboot or flash a boot partition.
+
+- Bluebinder is now active. `/dev/vhci` exists, the Bluetooth controller
+  powers on, and discovery start/stop passed. Pairing and headset audio were
+  not tested.
+- The audio DSP is online, a real output and input are present, and silent
+  playback completed. Audible output, microphone recording, and call routing
+  were not tested.
+- The camera backend supplied preview frames and the app opened. Saved photos,
+  video, camera switching, and image quality were not tested. An accelerometer
+  reading was recorded; other sensor sessions opened without physical tests.
+- oFono reported the modem online with no SIM. No cellular service was tested.
+- OpenStore, Chromium, and Camera launch through wrappers because AppArmor is
+  disabled in the running kernel. This improves app launch but provides no
+  Click confinement. SELinux remains permissive. Firefox and Settings use X11
+  launchers. MTP remains unavailable because the custom rescue gadget owns USB.
+- The owner's terminal remained active through screen lock after a Lomiri
+  lifecycle exemption. Its persistence after reboot is not verified.
+
+At a subsequent live check, the phone was at home/lock after roughly nine hours
+of uptime. No systemd units were failed; Bluebinder, the Android container,
+hardware setup, Wi-Fi setup, and LightDM were active. The battery reported
+`Charging`, 91%, and 25.4 °C in one sample. This does not establish charging
+rate, thermal safety over time, or post-repair cold-boot reliability.
+
 ## Remaining work
 
 - The clock starts wrong because writing the Qualcomm RTC returns
   `RTC_SET_TIME: Permission denied`, but NTP corrects it after Wi-Fi connects.
-- Bluetooth is not working: Bluebinder cannot open `/dev/vhci`; the running
-  kernel lacks `CONFIG_BT_HCIVHCI`. A matching `hci_vhci.ko` was built on the
-  host, but the attempted USB HTTP transfer timed out. The zero-byte phone
-  file was removed, and the module was not loaded or tested. Bluebinder was
-  disabled and stopped after 1,331 unsuccessful restarts to avoid wasting CPU
-  during a day-long test. Re-enable it with
-  `systemctl enable --now bluebinder.service` only after a working `/dev/vhci`
-  is available.
+- The earlier Bluebinder failure was resolved in the running session by the
+  module and permission repairs above. Its startup after a cold boot and
+  pairing behavior remain unverified.
 - Claude Code 2.1.274, Codex 0.158.0, and Antigravity CLI 1.2.12 are installed
   under `/home/phablet/.local/bin`. The user reports running Codex on the
   phone; Claude and Antigravity authentication are not verified. The
   native `DRE Terminal` launcher runs via X11 because Click confinement and
   Mir launch fail on this development kernel. The user confirmed its own
-  keyboard, buttons, and press-and-hold text selection work. `DRE OpenStore`
-  also starts, but its UI is laggy; ordinary Click app launches are not yet
-  reliable.
-- Cellular, calls, SMS, audio, camera, suspend, and charging behavior are not
-  yet acceptance-tested. There is no SIM installed.
+  keyboard, buttons, and press-and-hold text selection work. Ordinary Click
+  apps now launch through an unconfined workaround; broader app behavior and
+  confinement remain unresolved.
+- Cellular, calls, SMS, audible sound, saved camera output, suspend, and
+  charging over time are not yet acceptance-tested. There is no SIM installed.
+- Validate the post-repair boot in an agreed maintenance window. Recheck the
+  repaired services and user-facing hardware afterward; do not infer boot
+  persistence from a warm running session.
 - Build a safe installer and document a verified restore path before treating
   this as a redistributable Ubuntu Touch port.
