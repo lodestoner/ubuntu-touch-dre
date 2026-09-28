@@ -38,7 +38,7 @@ virtual_ab=$(property ro.virtual_ab.enabled)
 vendor_fingerprint=$(property ro.vendor.build.fingerprint)
 lineage_version=$(property ro.lineage.version)
 
-printf 'Model: %s\nDevice: %s\nBoard: %s\n' "$model" "$device" "$board"
+printf 'Android-reported model: %s\nDevice: %s\nBoard: %s\n' "$model" "$device" "$board"
 printf 'Slot: %s\nVerified boot: %s\n' "$slot" "$verified_boot"
 printf 'LineageOS: %s\n' "${lineage_version:-not detected}"
 
@@ -61,5 +61,6 @@ if [[ "$lineage_version" != 23.2-*-dre ]]; then
   exit 1
 fi
 
-printf 'PASS: DE2117 development baseline matches the first test phone.\n'
+printf 'PASS: Android-reported DE2117 baseline matches the first test phone.\n'
+printf 'This check cannot determine the original hardware model after conversion.\n'
 printf 'This read-only check does not authorize flashing or installation.\n'

@@ -36,7 +36,8 @@ run_preflight() {
 }
 
 run_preflight >"$temporary/output"
-grep -q 'PASS: DE2117 development baseline' "$temporary/output"
+grep -q 'PASS: Android-reported DE2117 baseline' "$temporary/output"
+grep -q 'cannot determine the original hardware model' "$temporary/output"
 if grep -q 'hidden-serial' "$temporary/output"; then
   printf 'FAIL: serial leaked in preflight output\n' >&2
   exit 1

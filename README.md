@@ -1,17 +1,20 @@
 # Ubuntu Touch for OnePlus Nord N200 5G (`dre`)
 
 > **Experimental developer port, not an installer or daily-driver release.**
-> Only the **DE2117** has booted this development image. The DE2118 has not
-> been validated. Do not flash an image from this repository onto a phone.
+> The working phone was originally **DE2118**, then converted with
+> MSMDownloadTool to US **DE2117** firmware before this port was tested.
+> Stock/unconverted DE2118 has not been validated. Do not flash an image from
+> this repository onto a phone.
 
-Ubuntu Touch reaches the home screen on a DE2117, boots without a computer,
-and connects to Wi-Fi. Touch, edge gestures, the power and volume buttons, and
-a terminal work. Codex has been run *on the phone*. This is a substantial
-bring-up milestone, but it is not yet a reproducible, safe installation path.
+Ubuntu Touch reaches the home screen on that converted phone, boots without a
+computer, and connects to Wi-Fi. Touch, edge gestures, the power and volume
+buttons, and a terminal work. Codex has been run *on the phone*. This is a
+substantial bring-up milestone, but it is not yet a reproducible, safe
+installation path.
 
 ## Status
 
-| Area | Observed state on the first DE2117 |
+| Area | Observed state on the first converted DE2118 |
 | --- | --- |
 | Boot and home screen | Working, including a fully unplugged restart |
 | Touch and physical buttons | Working |
@@ -40,12 +43,29 @@ sudo apt install adb
 ./scripts/preflight-device.sh
 ```
 
-The check requires the same DE2117 / `holi` / Android 12 vendor / LineageOS
-23.2 baseline observed on the working device. If it fails, **stop** and record
-the result; do not change firmware or slots to make it pass. The full
+The check requires the same **Android-reported DE2117** / `holi` / Android 12
+vendor / LineageOS 23.2 baseline observed on the working device. It cannot
+determine the original model printed on the phone. If it fails, **stop** and
+record the result; do not change firmware or slots to make it pass. The full
 [second-device test guide](docs/second-device-test.md) explains the gates and
-the test checklist. DE2118 identification is useful evidence, but the current
-preflight deliberately rejects it as unvalidated.
+the test checklist. A phone still reporting DE2118 fails this preflight.
+
+### DE2118-to-DE2117 conversion
+
+Both project phones were originally DE2118 carrier variants. Their owner used
+MSMDownloadTool to install US DE2117 firmware before Ubuntu Touch testing;
+the first phone now reports DE2117 in Android and has booted this port. The
+second phone's Ubuntu Touch installation remains untested. This is **not**
+evidence that an unconverted DE2118 can use DE2117 images, or that the two
+variants are identical in every respect. The exact MSM package and conversion
+steps used here have not been recorded or validated as a public procedure.
+
+An [N200 community installation report](https://community.e.foundation/t/my-install-on-oneplus-nord-n200/50081)
+describes an MSM/EDL route to US firmware; it is background reading, **not**
+an endorsed package or instruction to flash it. Firmware conversion, bootloader
+unlocking, and carrier/SIM unlocking are separate operations. Do not attempt
+conversion from this repository; first establish a device-specific, verified
+restore path.
 
 ## What this repository contains
 
@@ -76,11 +96,12 @@ describes recovery and installer work after functional bring-up.
 
 ## Contributing and verification
 
-Reports from a DE2117 are welcome. Include the phone model, Android/firmware
-baseline, steps, expected and actual behavior, and whether the test used the
-development image. **Redact serial numbers, IMEI, MAC addresses, Wi-Fi names,
-account details, tokens, and any raw device logs before posting.** Never post
-the contents of `evidence/private/`.
+Reports from an N200 are welcome. Include the original hardware model and the
+Android-reported model separately, plus the Android/firmware baseline, steps,
+expected and actual behavior, and whether the test used the development image.
+**Redact serial numbers, IMEI, MAC addresses, Wi-Fi names, account details,
+tokens, and any raw device logs before posting.** Never post the contents of
+`evidence/private/`.
 
 Run the offline tests with `./scripts/check.sh`. They do not require a phone.
 Source verification also uses `scripts/verify-sources.sh metadata/sources.lock`

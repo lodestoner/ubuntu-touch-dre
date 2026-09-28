@@ -1,4 +1,4 @@
-# Halium 16 development boot: DE2117
+# Halium 16 development boot: converted DE2118
 
 Status on 2026-09-28: the slot-A development boot reaches Ubuntu 24.04.3,
 starts the Android LXC container, loads the cached SELinux policy, prepares
@@ -10,6 +10,10 @@ the second had boot ID `88efd6d7-791d-4170-9882-efa0aa20ec10`. The user
 also confirmed a fully unplugged restart reached home with Wi-Fi connected;
 after USB reconnection its boot ID was
 `2c060e4f-15ca-47cf-bf6b-64d91ca858eb`.
+
+The handset was originally DE2118. Its owner converted it with
+MSMDownloadTool to US DE2117 firmware before this bring-up; Android reports
+DE2117. The boot result does not validate stock DE2118 firmware.
 
 The flashed development boot image is `out/boot-ubuntu-systemd-halium16-v2.img`.
 The Ubuntu rootfs and Android rootfs image live on userdata. This is a

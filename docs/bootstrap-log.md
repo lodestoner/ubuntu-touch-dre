@@ -20,7 +20,9 @@ for the working development boot and remaining release blockers.
 
 - Redacted report: `evidence/device/20260927T085101Z/`
 - Transport: ADB
-- Identity: DE2117 / OnePlusN200 / `holi`; canonical port codename `dre`
+- ADB-reported identity: DE2117 / OnePlusN200 / `holi`; canonical port codename
+  `dre`. The physical phone was originally DE2118 and had already been
+  converted to US DE2117 firmware with MSMDownloadTool.
 - Active slot: A
 - Partition architecture: dynamic partitions with virtual A/B
 - Verified boot: orange (unlocked)

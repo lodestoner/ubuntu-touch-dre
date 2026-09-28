@@ -1,14 +1,18 @@
-# Second-device test plan (DE2117)
+# Second-device test plan (converted DE2118)
 
 This is a staged test plan for a spare OnePlus Nord N200. **It is not an
 installation guide yet.** The first phone proves the development boot can work;
-it does not prove another phone can be installed or restored safely. DE2118
-must be identified and validated separately before using DE2117 artifacts.
+it does not prove another phone can be installed or restored safely. Both
+project phones were originally DE2118 and converted to US DE2117 firmware
+with MSMDownloadTool; only the first has booted this port. This plan does not
+cover an unconverted DE2118.
 
 ## 1. Prepare without modifying the phone
 
-1. Record the model printed in Settings or on the device label. The supported
-   test target is **DE2117**; stop for DE2118 or any other model.
+1. Record the original model on the device label and the model Android
+   currently reports as separate facts. The test target is a converted DE2118
+   reporting **DE2117** in Android. A DE2118 label alone is not a mismatch;
+   stop if Android still reports DE2118 or another model.
 2. Save personal data elsewhere. Unlocking a bootloader or installing another
    OS can erase the phone. Keep a charged battery and a known-good USB cable.
 3. On the phone's existing Android installation, enable USB debugging and
@@ -18,10 +22,11 @@ must be identified and validated separately before using DE2117 artifacts.
 5. Save the pass/fail result without sharing device identifiers. If it fails,
    stop and investigate the mismatch rather than changing partitions blindly.
 
-The preflight checks the known DE2117, `holi`, unlocked bootloader, A/B dynamic
-partition layout, Android 12 OnePlus vendor fingerprint, and LineageOS 23.2
-`dre` baseline. A pass means **only** that these properties resemble the first
-phone. It does not verify the boot partition contents or prove recovery.
+The preflight checks the reported DE2117, `holi`, unlocked bootloader, A/B
+dynamic partition layout, Android 12 OnePlus vendor fingerprint, and LineageOS
+23.2 `dre` baseline. A pass means **only** that these properties resemble the
+first phone. It cannot infer the factory model, verify the boot partition
+contents, or prove recovery.
 
 ## 2. Recovery gate — currently blocked
 
@@ -64,7 +69,7 @@ as working.
 | Suspend/wake, battery drain, charging | Not tested | Not tested |
 | Stock restore and re-install | Not tested | Not tested |
 
-Note the model, active slot, firmware/LineageOS baseline, artifact hashes,
-test date, and any reproduction steps. Review logs for personal information
-before sharing them. See `evidence/README.md` for the repository's redaction
-convention.
+Note both the factory and Android-reported models, active slot,
+firmware/LineageOS baseline, artifact hashes, test date, and any reproduction
+steps. Review logs for personal information before sharing them. See
+`evidence/README.md` for the repository's redaction convention.
