@@ -1,0 +1,14 @@
+[Unit]
+Description=Create DRE slot-A logical partition mappings
+DefaultDependencies=no
+Requires=dev-sda9.device
+After=dev-sda9.device systemd-udevd-kernel.socket
+Before=mount-android-partitions.service lxc-android-config.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/dre-map-super
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

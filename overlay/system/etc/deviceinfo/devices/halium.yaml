@@ -1,0 +1,23 @@
+dre:
+  Vendor: OnePlus
+  codename: dre
+  Names:
+    - DE2117
+    - OnePlusN200
+    - Nord N200
+    - OnePlus Nord N200 5G
+  PrettyName: OnePlus Nord N200 5G
+  DeviceType: phone
+  GridUnit: 21
+  SupportedOrientations:
+    - Portrait
+    - Landscape
+    - InvertedLandscape
+  MirAndroidPlatformClientEglFlush:
+    - "all"
+  MirAndroidPlatformServerEglSync:
+    - false
+  MirAndroidPlatformServerPartialUpdates:
+    - false
+  XwaylandShm:
+    - true

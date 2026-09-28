@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=DRE OpenStore
+Exec=env DISPLAY=:0 QT_QPA_PLATFORM=xcb /usr/local/bin/dre-launch-click openstore.openstore-team_openstore_4.2.0-20.04 -- openstore
+Icon=/opt/click.ubuntu.com/.click/users/phablet/openstore.openstore-team/openstore.svg
+Terminal=false
+X-Lomiri-Touch=true

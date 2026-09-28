@@ -1,0 +1,13 @@
+[Unit]
+Description=Bring up DRE native Wi-Fi
+Requires=dre-android.service
+After=dre-android.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/dre-wifi
+RemainAfterExit=yes
+TimeoutStartSec=150
+
+[Install]
+WantedBy=multi-user.target

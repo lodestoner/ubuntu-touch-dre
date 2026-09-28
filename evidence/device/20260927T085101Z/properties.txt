@@ -1,0 +1,14 @@
+DE2117
+OnePlusN200
+holi
+OnePlus
+16
+36
+BP4A.251205.006
+23.2-20260925-NIGHTLY-dre
+holi
+_a
+true
+true
+true
+orange

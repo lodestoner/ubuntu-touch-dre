@@ -1,0 +1,5 @@
+ro.vendor.build.version.release=16
+ro.vendor.build.version.sdk=36
+ro.vendor.build.fingerprint=OnePlus/OnePlusN200/OnePlusN200:12/SKQ1.210216.001/R.205d809_1-735849:user/release-keys
+ro.bootimage.build.fingerprint=<empty>
+ro.product.first_api_level=30

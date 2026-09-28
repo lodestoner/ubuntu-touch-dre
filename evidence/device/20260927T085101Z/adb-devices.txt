@@ -1,0 +1,3 @@
+List of devices attached
+<redacted-serial>               device usb:3-4 product:OnePlusN200 model:DE2117 device:OnePlusN200 transport_id:31
+

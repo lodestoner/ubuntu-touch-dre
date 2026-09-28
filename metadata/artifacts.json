@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "lineage-23.2-20260925-dre-boot",
+      "path": "downloads/lineage-23.2-20260925-dre-boot.img",
+      "sha256": "a781cabde899f47c48a8d1a0c0f44dfba79dd242b577a558be615ae6a5b9d495",
+      "device": "dre",
+      "role": "boot",
+      "source_url": "https://mirrorbits.lineageos.org/full/dre/20260925/boot.img"
+    },
+    {
+      "name": "lineage-23.2-20260925-dre-vendor-boot",
+      "path": "downloads/lineage-23.2-20260925-dre-vendor_boot.img",
+      "sha256": "f16594991d2c0e55d5a41e3c1cdc439ea8df3d17d8a97ac316547d1f34770bbf",
+      "device": "dre",
+      "role": "vendor_boot",
+      "source_url": "https://mirrorbits.lineageos.org/full/dre/20260925/vendor_boot.img"
+    }
+  ]
+}

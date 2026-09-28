@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: OASIS Porting <noreply@localhost>
+Date: Sun, 27 Sep 2026 09:30:00 -0500
+Subject: [PATCH] arm64: configs: add Halium bootstrap fragment
+
+Enable namespaces, devtmpfs, and AppArmor required by Ubuntu Touch while
+leaving the OnePlus holi QGKI board configuration intact.
+
+This fragment is original to the dre port. Its settings follow the UBports
+kernel requirements and are merged after vendor/holi-qgki_defconfig.
+---
+ arch/arm64/configs/halium.config | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 arch/arm64/configs/halium.config
+
+diff --git a/arch/arm64/configs/halium.config b/arch/arm64/configs/halium.config
+new file mode 100644
+index 000000000000..111111111111
+--- /dev/null
++++ b/arch/arm64/configs/halium.config
+@@ -0,0 +1,15 @@
++CONFIG_SYSVIPC=y
++CONFIG_IPC_NS=y
++CONFIG_USER_NS=y
++CONFIG_PID_NS=y
++CONFIG_DEVTMPFS=y
++CONFIG_DEVTMPFS_MOUNT=y
++CONFIG_SECURITY_APPARMOR=y
++CONFIG_SECURITY_APPARMOR_HASH=y
++CONFIG_SECURITY_APPARMOR_HASH_DEFAULT=y
++CONFIG_DEFAULT_SECURITY_APPARMOR=y
++CONFIG_LSM="lockdown,yama,loadpin,safesetid,integrity,apparmor,selinux"
++CONFIG_ANDROID_BINDER_IPC=y
++CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder"
++# CONFIG_ANDROID_BINDER_IPC_32BIT is not set
++CONFIG_USB_CONFIGFS_RNDIS=y

@@ -1,0 +1,14 @@
+[Unit]
+Description=Prepare DRE GPU, X11, and touchscreen for Lomiri
+Requires=dre-android.service dre-selinux-policy.service
+After=dre-android.service dre-selinux-policy.service
+Before=lightdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/sbin/dre-boot-hardware
+RemainAfterExit=yes
+TimeoutStartSec=90
+
+[Install]
+WantedBy=multi-user.target

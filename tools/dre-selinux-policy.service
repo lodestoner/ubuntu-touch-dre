@@ -1,0 +1,13 @@
+[Unit]
+Description=Load cached DRE Android SELinux policy
+Requires=dre-android.service
+After=dre-android.service
+Before=dre-boot-hardware.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/dre-load-policy
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

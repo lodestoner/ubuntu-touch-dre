@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=DRE Keyboard
+Exec=env DISPLAY=:0 matchbox-keyboard
+Icon=input-keyboard
+Terminal=false
+X-Lomiri-Touch=true

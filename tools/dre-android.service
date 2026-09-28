@@ -1,0 +1,18 @@
+[Unit]
+Description=DRE Halium 16 Android container
+Requires=dre-map-super.service mount-android-system.service mount-android-partitions.service mount-halium-overlay.service lxc-android-config-mount-apexes.service
+After=dre-map-super.service mount-android-system.service mount-android-partitions.service mount-halium-overlay.service lxc-android-config-mount-apexes.service
+Before=dre-selinux-policy.service dre-boot-hardware.service lightdm.service
+
+[Service]
+Type=exec
+ExecStartPre=/bin/sh -ec 'mountpoint -q /var/lib/lxc/android/rootfs; rm -rf /dev/__properties__; install -d -m 0755 /dev/__properties__'
+ExecStart=/usr/libexec/lxc-android-config/start-android-container
+ExecStartPost=/usr/lib/lxc-android-config/lxc-android-ready
+ExecStop=-/usr/bin/lxc-stop -n android -k
+Restart=on-failure
+RestartSec=3
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target

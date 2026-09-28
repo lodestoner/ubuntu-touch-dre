@@ -1,0 +1,6 @@
+captured_utc=20260927T085101Z
+transport=adb
+canonical_device=dre
+model=DE2117
+platform=holi
+active_slot=a

@@ -1,0 +1,34 @@
+# Large reproducible source/build trees
+halium/
+android/
+build/
+out/
+cache/
+downloads/
+firmware/
+proprietary/
+vendor-blobs/
+evidence/private/
+
+# Generated images and logs
+*.img
+*.bin
+*.zip
+*.tar
+*.tar.*
+*.log
+
+# Local metadata
+.env
+*.local
+__pycache__/
+*.py[cod]
+
+# Isolated implementation worktrees
+.worktrees/
+
+# Local bring-up experiments and upstream clone, not reviewed for publication
+diagnostics/
+tools/phone_exec.py
+tools/wait-and-flash.py
+tools/rootfs-builder-debos/
